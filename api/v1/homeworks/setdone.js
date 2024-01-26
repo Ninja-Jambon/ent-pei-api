@@ -7,9 +7,9 @@ const { setHomeworkDone, setHomeworkNotDone } = require("../../../libs/mysql");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.post("/", (req, res) => {
   const { token } = req.cookies;
-  const { id, done } = req.query;
+  const { id, done } = req.body;
 
   try {
     const data = jwt.verify(token, config.jwtSecret);

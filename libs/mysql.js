@@ -162,6 +162,37 @@ function getDone(userid) {
   });
 }
 
+// ----------------------------------
+// Rootme
+// ----------------------------------
+
+function addRootmeUser(userid, name, username, url) {
+  return new Promise((resolve, reject) => {
+    con.query(
+      `INSERT INTO rootme (userid, name, username, url) VALUES (${userid}, "${name}", "${username}", "${url}")`,
+      (error, result) => {
+        if (error) {
+          reject(new Error(error));
+        } else {
+          resolve(result);
+        }
+      }
+    );
+  });
+}
+
+function getRootmeUsers() {
+  return new Promise((resolve, reject) => {
+    con.query(`SELECT * FROM rootme`, (error, result) => {
+      if (error) {
+        reject(new Error(error));
+      } else {
+        resolve(result);
+      }
+    });
+  });
+}
+
 module.exports = {
   addSession,
   getUser,
@@ -174,4 +205,7 @@ module.exports = {
   setHomeworkDone,
   setHomeworkNotDone,
   getDone,
+
+  addRootmeUser,
+  getRootmeUsers,
 };
