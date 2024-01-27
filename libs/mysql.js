@@ -181,6 +181,19 @@ function addRootmeUser(userid, name, username, url) {
   });
 }
 
+function updateRootmePoints(userid, points) {
+  return new Promise((resolve, reject) => {
+    con.query(`UPDATE rootme SET points = ${points} WHERE userid = ${userid}`, (error, result) => {
+      if (error) {
+        reject(new Error(error));
+      }
+      else {
+        resolve(result);
+      }
+    })
+  })
+}
+
 function getRootmeUsers() {
   return new Promise((resolve, reject) => {
     con.query(`SELECT * FROM rootme`, (error, result) => {
@@ -207,5 +220,6 @@ module.exports = {
   getDone,
 
   addRootmeUser,
+  updateRootmePoints,
   getRootmeUsers,
 };
