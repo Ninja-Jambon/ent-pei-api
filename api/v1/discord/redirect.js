@@ -22,7 +22,6 @@ router.get("/", async (req, res) => {
       res.redirect(config.baseUrl)
     }
     catch (e) {
-      console.log(e)
       res.status(400).json({ message: "unauthorized" });
     }
   } else {

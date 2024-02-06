@@ -11,6 +11,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     const { token } = req.cookies;
+
     const data = jwt.verify(token, config.jwtSecret);
     const user = await getUser(data.userid);
 
@@ -26,7 +27,7 @@ router.get("/", async (req, res) => {
     
     res.status(200).json(userInfo);
   } catch (e) {
-    res.status(400).json({ message: "unauthorized" });
+    res.status(400).json({ message: "unauthorizeddddd" });
   }
 });
 

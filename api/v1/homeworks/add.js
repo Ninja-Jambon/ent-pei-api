@@ -30,18 +30,12 @@ router.post("/", async (req, res) => {
         .json({ message: "you can't add an homework in the past" });
     }
 
-    if (important != "true" && important != "false") {
-      return res
-        .status(400)
-        .json({ message: 'important should be "true" or "false"' });
-    }
-
     await addHomework(title, description, date, important);
+    res.status(200).json({ message: "success" });
   } catch (e) {
+    console.log(e);
     res.status(400).json({ message: "invalid token" });
   }
-
-  res.status(200).json({ message: "success" });
 });
 
 module.exports = router;

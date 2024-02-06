@@ -9,6 +9,7 @@ require("dotenv").config()
 const app = express();
 const port = config.port || 3000;
 
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
@@ -31,6 +32,10 @@ function loadRoutes(folderName) {
 }
 
 loadRoutes("api");
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 app.listen(port, () => {
   console.log(`Server listening on port http://localhost:${port}`);

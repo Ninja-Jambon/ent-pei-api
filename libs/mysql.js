@@ -105,7 +105,7 @@ function removeHomework(id) {
 function listFutureHomeworks() {
   return new Promise((resolve, reject) => {
     con.query(
-      `SELECT * FROM homeworks WHERE date > ${Date.now()}`,
+      `SELECT * FROM homeworks WHERE date > ${Date.now()} ORDER BY date asc`,
       (error, result) => {
         if (error) {
           reject(new Error(error));
