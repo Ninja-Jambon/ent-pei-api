@@ -1,0 +1,20 @@
+{
+  "name": "ENT PEI",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "icons/logo_512.svg",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/logo_512.png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -27,7 +27,8 @@ router.get("/", async (req, res) => {
     
     res.status(200).json(userInfo);
   } catch (e) {
-    res.status(400).json({ message: "unauthorizeddddd" });
+    console.log(e);
+    res.status(400).json({ message: "unauthorized" });
   }
 });
 

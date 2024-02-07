@@ -3,16 +3,13 @@ const jwt = require("jsonwebtoken");
 
 const config = require("../../../config.json");
 
-const { removeSession } = require("../../../libs/mysql");
-
 const router = express.Router();
 
 router.get('/', (req, res) => {
     const { token } = req.cookies;
 
     try {
-        const data = jwt.verify(token, config.jwtSecret);
-        removeSession(data.userid);
+        const _data = jwt.verify(token, config.jwtSecret);
 
         res.clearCookie("token");
         res.status(200).json({message: "success"});
