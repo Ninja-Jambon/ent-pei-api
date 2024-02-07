@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
     const { token } = req.cookies;
 
     try {
-        const _data = jwt.verify(token, config.jwtSecret)
+        const data = jwt.verify(token, config.jwtSecret)
 
         if (!config.baseUrl.includes(data.userid)) {
             return res.status(400).json({ message: "you need to be an admin" });
