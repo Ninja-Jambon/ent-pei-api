@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
     try {
         const data = jwt.verify(token, config.jwtSecret)
 
-        if (!config.baseUrl.includes(data.userid)) {
+        if (!config.admins.includes(data.userid)) {
             return res.status(400).json({ message: "you need to be an admin" });
         }
     }
