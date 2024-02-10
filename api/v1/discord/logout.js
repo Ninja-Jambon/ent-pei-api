@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
         const _data = jwt.verify(token, config.jwtSecret);
 
         res.clearCookie("token");
-        res.status(200).json({message: "success"});
+        res.redirect(config.baseUrl);
     }
     catch {
         res.status(400).json({ message: "unauthorized" });
