@@ -105,7 +105,7 @@ function removeHomework(id) {
 function listFutureHomeworks() {
   return new Promise((resolve, reject) => {
     con.query(
-      `SELECT * FROM homeworks WHERE date > ${Date.now()} ORDER BY date asc`,
+      `SELECT * FROM homeworks WHERE date > ${new Date().setHours(18, 0, 0, 0)} ORDER BY date asc`,
       (error, result) => {
         if (error) {
           reject(new Error(error));
@@ -151,6 +151,21 @@ function getDone(userid) {
   return new Promise((resolve, reject) => {
     con.query(
       `SELECT * FROM done WHERE userid = ${userid}`,
+      (error, result) => {
+        if (error) {
+          reject(new Error(error));
+        } else {
+          resolve(result);
+        }
+      }
+    );
+  });
+}
+
+function setShown(id, shown) {
+  return new Promise((resolve, reject) => {
+    con.query(
+      `UPDATE homeworks SET shown = ${shown} WHERE id = ${id}`,
       (error, result) => {
         if (error) {
           reject(new Error(error));
@@ -218,6 +233,7 @@ module.exports = {
   setHomeworkDone,
   setHomeworkNotDone,
   getDone,
+  setShown,
 
   addRootmeUser,
   updateRootmePoints,

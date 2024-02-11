@@ -55,8 +55,26 @@ async function getUserInfo(token) {
   return user.data;
 }
 
+async function sendWebhook(title, description, important) {
+  const res = await axios.post(config.webhook, {
+    content: "<@1149249993274826802>",
+    username: "Roberto",
+    avatar_url: "https://cdn.discordapp.com/avatars/1155429463081885717/2ce8204c6af800f39f52655ff6745b86.png",
+    embeds: [
+      {
+        title: title,
+        description: description,
+        color: important ? 15356477 : 7195103
+      }
+    ]
+  })
+
+  return res;
+}
+
 module.exports = {
   getToken,
   getNewToken,
   getUserInfo,
+  sendWebhook
 };
